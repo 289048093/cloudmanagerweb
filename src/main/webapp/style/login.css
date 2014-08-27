@@ -1,0 +1,63 @@
+﻿.ck_container{
+	min-height:660px;	
+}
+.ck_logo_wrapper{
+	padding-top: 100px;
+	padding-left: 350px;
+	padding-bottom: 80px;	
+}
+
+.ck_logo_img{
+	width:100%;
+	height:80px;
+	background:url(../images/ck_logo.png) no-repeat;	
+}
+.ck_domain{width:153px;}
+.ck_body{
+	width:100%;
+	height:190px;
+	background:#5fa3c3;	
+}
+
+.ck_login_form{
+	position: absolute;
+	width:300px;
+	background:#eef2f7;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border: 1px solid #536376;
+	-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;
+	-moz-box-shadow:  rgba(0,0,0,.6) 0px 2px 12px;
+	padding: 14px 22px;
+	color: #536376;
+	font-weight:bold;
+}
+
+.ck_login_form_title{
+	font-size:16px;		
+	padding-bottom: 10px;
+}
+
+.ck_login_body{
+	margin-bottom:15px;	
+}
+
+.ck_spliter_h{
+	width:100%;
+	height:2px;
+	clear:both;
+	margin-bottom:10px;
+	background:url(../images/ck_login_spliter.png) repeat-x;
+}
+.ck_footer{
+	margin-top:50px;	
+}
+
+.ck_copyright{
+	float: right;
+	margin-right: 150px;
+	margin-top: 20px;
+}
+
+
+

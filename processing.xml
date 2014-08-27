@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<processor>
+	<!-- 
+		###############
+		###############    数据库修改
+		###############
+	-->
+	<!-- 修改方言 -->
+	<modify>
+		<name>//s:property[@name='hibernate.dialect']/@value</name>
+		<value>com.cloudking.cloudmanagerweb.CkSQLDialect</value>
+		<!-- org.hibernate.dialect.SQLServerDialect -->
+		<!-- org.hibernate.dialect.MySQLDialect -->
+		<!-- org.hibernate.dialect.Oracle10gDialect -->
+	</modify>
+	<!-- 修改驱动类 -->
+	<modify>
+		<name>
+			//s:property[@name='hibernate.connection.driver_class']/@value
+		</name>
+		<value>com.mysql.jdbc.Driver</value>
+		<!-- net.sourceforge.jtds.jdbc.Driver -->
+		<!-- oracle.jdbc.driver.OracleDriver -->
+		<!-- com.mysql.jdbc.Driver -->
+	</modify>
+	<!-- 修改URL地址 -->
+	<modify>
+		<name>
+			//s:property[@name='hibernate.connection.url']/@value
+		</name>
+		<value>jdbc:mysql://localhost:3306/cloudmanagerweb?useOldAliasMetadataBehavior=true</value>
+		<!-- jdbc:jtds:sqlserver://localhost:1433/cloudmanagerweb; -->
+		<!--  oracle  jdbc:oracle:thin:@localhost:1521:cloudmanagerweb -->
+		<!--   mysql jdbc:mysql://localhost:3306/cloudmanagerweb  -->
+	</modify>
+
+	<!-- 修改用户名 -->
+	<modify>
+		<name>
+			//s:property[@name='hibernate.connection.username']/@value
+		</name>
+		<value>root</value>
+	</modify>
+
+	<!-- 修改密码 -->
+	<modify>
+		<name>
+			//s:property[@name='hibernate.connection.password']/@value
+		</name>
+		<value>cloud</value>
+	</modify>
+
+	<!-- 在控制台打印SQL语句 -->
+	<modify>
+		<name>//s:property[@name='hibernate.show_sql']/@value</name>
+		<value>false</value>
+	</modify>
+
+	<!--  格式化 SQL语句 -->
+	<modify>
+		<name>//s:property[@name='hibernate.format_sql']/@value</name>
+		<value>false</value>
+	</modify>
+
+	<!--  Hiberante将为SQL产生注释，这样更利于调试 -->
+	<modify>
+		<name>
+			//s:property[@name='hibernate.use_sql_comments']/@value
+		</name>
+		<value>false</value>
+	</modify>
+
+
+
+	<!-- 
+		###############
+		###############    project-config修改
+		###############
+	-->
+	<modify>
+		<name>/cloudmanagerweb/cloudmanagerwebHome</name>
+		<value>
+			<![CDATA[
+               <cloudmanagerwebHome>
+					/opt/cloudmanagerweb_Home
+				</cloudmanagerwebHome>
+            ]]>
+		</value>
+	</modify>
+	<modify>
+		<name>/cloudmanagerweb/ftp/hostname</name>
+		<value>
+			<![CDATA[
+               <hostname>
+					192.168.0.62
+				</hostname>
+            ]]>
+		</value>
+	</modify>
+	<modify>
+		<name>/cloudmanagerweb/ftp/port</name>
+		<value>
+			<![CDATA[
+               <port>
+					21
+				</port>
+            ]]>
+		</value>
+	</modify>
+	<modify>
+		<name>/cloudmanagerweb/ftp/username</name>
+		<value>
+			<![CDATA[
+               <username>
+					ftptest
+				</username>
+            ]]>
+		</value>
+	</modify>
+		<modify>
+		<name>/cloudmanagerweb/ftp/password</name>
+		<value>
+			<![CDATA[
+               <password>
+					123456
+				</password>
+            ]]>
+		</value>
+	</modify>
+
+
+	<!-- 
+		###############
+		###############    struts修改
+		###############
+	-->
+	<modify>
+		<name>//constant[@name='struts.multipart.saveDir']/@value</name>
+		<value>/opt/cloudmanagerweb_Home/tmp</value>
+	</modify>
+
+
+	<!-- 
+		###############
+		###############    log4j修改
+		###############
+	-->
+	<modify>
+		<name>log4j.rootLogger</name>
+		<value>ERROR</value>
+	</modify>
+	<modify>
+		<name>log4j.logger.com.cloudking.cloudmanager.core</name>
+		<value>ERROR,core</value>
+	</modify>
+</processor>

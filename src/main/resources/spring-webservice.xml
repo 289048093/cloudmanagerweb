@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="domainWebservice"
+		class="com.cloudking.cloudmanagerweb.webservice.DomainService">
+	</bean>
+	<bean id="machineTypeWebservice"
+		class="com.cloudking.cloudmanagerweb.webservice.MachineTypeService">
+	</bean>
+	<bean id="portalWebservice"
+		class="com.cloudking.cloudmanagerweb.webservice.PortalService">
+	</bean>
+	<bean id="templateWebservice"
+		class="com.cloudking.cloudmanagerweb.webservice.TemplateService">
+	</bean>
+	<bean id="vmWebservice"
+		class="com.cloudking.cloudmanagerweb.webservice.VMService">
+	</bean>
+</beans>

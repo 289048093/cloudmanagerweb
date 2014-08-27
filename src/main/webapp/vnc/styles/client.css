@@ -1,0 +1,300 @@
+
+/*
+ *  Guacamole - Clientless Remote Desktop
+ *  Copyright (C) 2010  Michael Jumper
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+body {
+    background: black;
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    border: none;
+}
+
+.software-cursor {
+    cursor: url('../images/mouse/dot.gif'),url('../images/mouse/blank.cur'),default;
+    overflow: hidden;
+}
+
+.guac-error .software-cursor {
+    cursor: default;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/* Dialogs */
+
+div.dialogOuter {
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    visibility: hidden;
+}
+
+div.dialogMiddle {
+    width: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div.dialog {
+    padding: 1em;
+
+    max-width: 75%;
+    text-align: left;
+
+    display: inline-block;
+    visibility: visible;
+}
+
+div.dialog h1 {
+    margin: 0;
+    margin-bottom: 0.25em;
+    text-align: center;
+}
+
+div.dialog div.buttons {
+    margin: 0;
+    margin-top: 0.5em;
+    text-align: center;
+}
+
+button {
+
+    border-style: solid;
+    border-width: 1px;
+
+    padding: 0.25em;
+    padding-right: 1em;
+    padding-left: 1em;
+
+}
+
+button:active {
+
+    padding-top: 0.35em;
+    padding-left: 1.1em;
+
+    padding-bottom: 0.15em;
+    padding-right: 0.9em;
+
+}
+
+button#reconnect {
+    display: none;
+}
+
+.guac-error button#reconnect {
+    display: inline;
+
+    background:   #200;
+    border-color: #822;
+    color:        #944; 
+}
+
+.guac-error button#reconnect:hover {
+    background:   #822;
+    border-color: #B33;
+    color:        black; 
+}
+
+
+div.dialog p {
+    margin: 0;
+}
+
+#statusText {
+    text-shadow: 0 0 0.25em black, 0 0 0.25em black, 0 0 0.25em black, 0 0 0.25em black;
+    font-size: xx-large;
+    color: white;
+}
+
+.guac-error #statusText {
+    text-shadow: 0 0 0.25em black, 0 0 0.25em black, 0 0 0.25em black, 0 0 0.25em black;
+    color: #D44;
+}
+
+/* Menu */
+
+#menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+    background: #FEA;
+    border-bottom: 1px solid black;
+    font-size: 0.8em;
+}
+
+.guac-error #menu {
+    background: #D44;
+}
+
+div#display * {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#menu img {
+    vertical-align: middle;
+}
+
+#menu span {
+    vertical-align: middle;
+}
+
+#menu button {
+    vertical-align: middle;
+    background:   #DC8;
+    border-color: #986;
+    color:        black; 
+}
+
+#menu button:hover {
+    background:   #FFC;
+    border-color: #DC8;
+}
+
+.guac-error #menu button {
+    background:   #B33;
+    border-color: #822;
+}
+
+.guac-error #menu button:hover {
+    background:   #F44;
+    border-color: #B33;
+}
+
+div#clipboardDiv {
+    display: none;
+    position: absolute;
+    background: #FA5;
+    padding: 1em;
+
+    border: 1px solid black;
+
+    width: 50em;
+    z-index: 2;
+    opacity: 0.5;
+}
+
+#menu:hover div#clipboardDiv {
+    opacity: 1;
+}
+
+div#clipboardDiv h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+div#clipboardDiv textarea {
+    width: 100%;
+}
+
+div#menuControl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    width: 100%;
+    height: 3px;
+    background: none;
+
+    z-index: 3;
+}
+
+/* Viewport Clone */
+
+div#viewportClone {
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    visibility: hidden;
+}
+
+/* Keyboard event target */
+
+textarea#eventTarget {
+    position: absolute;
+   
+    /* Hide offscreen */
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+
+    overflow: hidden;
+}
+
+/* Touch-specific menu */
+
+div#touchMenu {
+
+    position: absolute;
+    visibility: hidden;
+    z-index: 4;
+    
+    white-space: pre;
+    background: black;
+    border: 1px solid silver;
+    padding: 1em;
+    opacity: 0.8;
+
+}
+
+div#touchClipboardDiv {
+
+    position: absolute;
+    visibility: hidden;
+    z-index: 4;
+
+    color: white;
+    background: black;
+    border: 1px solid silver;
+    padding: 1em;
+    opacity: 0.8;
+
+    max-width: 50em;
+    
+}
+
+div#touchClipboardDiv h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+div#touchClipboardDiv textarea {
+    width: 100%;
+}
+

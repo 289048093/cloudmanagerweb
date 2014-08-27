@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<service name="portal"
+		targetNamespace="http://ws.apache.org/axis2/portal">
+		<description>Portal WebService服务</description>
+		<schema
+			schemaNamespace="http://ws.apache.org/axis2/portal/xsd/" />
+		<parameter name="ServiceClass" locked="false">
+			com.cloudking.cloudmanagerweb.webservice.PortalService
+		</parameter>
+		<parameter name="ServiceObjectSupplier">
+			org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<parameter name="SpringBeanName">
+			portalWebservice
+		</parameter>
+		<operation name="addPortalOrder">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="queryMyOrder">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+	</service>
+</serviceGroup>

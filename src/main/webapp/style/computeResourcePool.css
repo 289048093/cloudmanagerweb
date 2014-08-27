@@ -1,0 +1,19 @@
+﻿#resourceDiv{width:90%;overfloat:hidden;border: 1px solid #617775;
+background: #F0F6E4;
+overflow-x: auto;margin-top: 5px;}
+#ck_compute_inner_wrapper{
+	float:left;
+}
+.ck_compute_lable{
+	width:20% !important;
+}
+.ck_compute_btn{
+	width:80% !important;
+}
+.ck_compute_name_btn,.ck_search_btn{
+	width:35% !important;	
+}
+.resources{
+	max-height: 80px;
+overflow: scroll;
+}

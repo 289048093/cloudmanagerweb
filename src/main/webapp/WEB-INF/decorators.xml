@@ -1,0 +1,15 @@
+<decorators defaultdir="/decorators">
+	<decorator name="main" page="main.jsp">
+		<pattern>/*.jsp</pattern>
+	</decorator>
+	<decorator name="main_" page="main_.jsp">
+		<pattern>/*_.jsp</pattern>
+	</decorator>
+	<excludes>
+		<pattern>/login.jsp*</pattern>
+		<pattern>/error/*.jsp*</pattern>
+		<pattern>/vnc/*.jsp*</pattern>
+		<pattern>/template/upload.jsp*</pattern>
+		<pattern>/jump.jsp*</pattern>
+	</excludes>
+</decorators>

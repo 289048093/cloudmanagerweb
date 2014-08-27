@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<!-- 设置属性 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.configuration.xm.reload" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.multipart.maxSize" value="5000000"></constant>
+	<constant name="struts.custom.i18n.resources"
+		value="formatResource" />
+	<constant name="struts.action.extension" value="action"></constant>
+	<constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	<constant name="struts.convention.result.path" value="/WEB-INF" />
+	<!-- 这个常量表示缺省的包名是什么,这个常量可以配也可以不配 -->
+	<constant name="struts.convention.default.parent.package"
+		value="cloudmanagerweb-default">
+	</constant>
+
+
+	<!-- 临时文件夹 -->
+    <constant name="struts.multipart.saveDir" value="/opt/cloudmanagerweb_Home/tmp" />
+	<!-- 默认 -->
+	<package name="cloudmanagerweb-default" extends="json-default">
+		<result-types>
+			<result-type name="chain"
+				class="com.cloudking.cloudmanagerweb.ActionChainResult"
+				default="false" />
+		</result-types>
+		<interceptors>
+			<interceptor name="exceptionInterceptor"
+				class="com.cloudking.cloudmanagerweb.ExceptionInterceptor">
+			</interceptor>
+			<interceptor name="authorityInterceptor"
+				class="com.cloudking.cloudmanagerweb.AuthorityInterceptor">
+			</interceptor>
+			<interceptor name="myToken"
+				class="com.cloudking.cloudmanagerweb.StrutsTokenInterceptor">
+			</interceptor>
+			<interceptor-stack name="main-stack">
+				<interceptor-ref name="authorityInterceptor"></interceptor-ref>
+				<interceptor-ref name="json"></interceptor-ref>
+				<!-- defaultStack Interceptor start -->
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="debugging" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload">
+					<param name="maximumSize">2097152</param>
+					<param name="fileUpload.allowedTypes">
+						text/plain,image/bmp,image/png,image/gif,image/jpeg,image/jpg,
+						application/msword,application/excel,application/vnd.ms-excel,
+						application/zip,application/x-tar</param>
+					<param name="allowedExtensions">
+						png,bmp,jpg,doc,xls,txt,zip,tar
+					</param>
+				</interceptor-ref>
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">
+						dojo\..*,^struts\..*
+					</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<!-- 验证，只验证方法 -->
+				<interceptor-ref name="validation">
+					<param name="validateAnnotatedMethodOnly">
+						true
+					</param>
+					<param name="excludeMethods">
+						input,back,cancel,browse
+					</param>
+				</interceptor-ref>
+				<!-- 验证方法结束 -->
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">
+						input,back,cancel,browse
+					</param>
+				</interceptor-ref>
+				<!-- defaultStack Interceptor end -->
+				
+				<!-- 注释掉token 
+				<interceptor-ref name="myToken"></interceptor-ref>-->
+				
+				<interceptor-ref name="exceptionInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="main-stack"></default-interceptor-ref>
+		<global-results>
+			<result name="input" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="noCache">true</param>
+				<param name="includeProperties">fieldErrors\..+$</param>
+			</result>
+			<result name="json" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="noCache">true</param>
+				<param name="excludeProperties">
+					^actionErrors, ^actionMessages, ^errorMessages,
+					^errors, ^fieldErrors, ^locale, ^texts
+				</param>
+			</result>
+			<result name="sessionAjaxError" type="plainText"></result>
+			<result name="rightsAjaxError" type="plainText"></result>
+			<result name="jpaError" type="dispatcher">
+				/error/jpaerror.jsp
+			</result>
+			<result name="systemerror" type="redirect">
+				/error/systemerror.jsp
+			</result>
+			<result name="rightsError" type="redirect">
+				/error/rights.jsp
+			</result>
+			<!-- <result name="invalid.token" type="dispatcher">
+				/error/repeatsubmit.jsp
+			</result> -->
+			<result name="json" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="noCache">true</param>
+				<param name="excludeProperties">
+					^actionErrors, ^actionMessages, ^errorMessages,
+					^errors, ^fieldErrors, ^locale, ^texts
+				</param>
+			</result>
+		</global-results>
+	</package>
+</struts>

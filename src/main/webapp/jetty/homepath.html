@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>安装向导</title>
+		<link rel="shortcut icon" href="images/favicon.ico"
+			type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="style/style.css"
+			media="screen" />
+	</head>
+	<body>
+		<div id="header">
+			<div id="logo">
+				<h1>
+					<a href="#">云景云管理平台安装向导</a>
+				</h1>
+				<p></p>
+			</div>
+		</div>
+		<!-- end #header -->
+		<div id="page">
+			<div id="content">
+				<div class="post">
+					<h1 class="title">
+						CLOUDMANAGERWEB_HOME
+					</h1>
+					<div class="gauid_wrapper">
+					<form action="trafficmonitorHomeSet.do" method="post">
+						<ul>
+							<li>
+								<span class="gauid_lable">HOME地址：</span>
+								<input type="text"  value="e:/trafficmonitor_home" name="homeURI"/>
+							</li>
+							<li>
+							<input type="button" value="上一步" class="db_submit" onclick="(function(){location='index.html';})()"/>
+								<input type="submit" value="下一步" class="db_submit" />
+							</li>
+						</ul>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- end #content -->
+		</div>
+	</body>
+</html>

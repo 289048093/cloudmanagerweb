@@ -1,0 +1,619 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cloudking</groupId>
+	<artifactId>cloudmanagerweb</artifactId>
+	<version>1.0.0.0</version>
+	<name>cloudmanagerweb</name>
+	<packaging>war</packaging>
+
+	<properties>
+		<struts-version>2.1.8.1</struts-version>
+		<!-- 配置文件修改存放目录 -->
+		<config-processor-dir>temp</config-processor-dir>
+	</properties>
+
+
+	<!-- 包依赖 -->
+	<dependencies>
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring</artifactId>
+			<version>2.5.6</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- spring over -->
+
+		<!-- quartz start  -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+		<!-- quartz end -->
+
+		<!-- hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.3.2.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- hibernate over -->
+
+
+		<!-- struts -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>${struts-version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<version>${struts-version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>${struts-version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
+			<version>${struts-version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- struts over -->
+
+		<!-- sitemesh -->
+		<dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>sitemesh</artifactId>
+			<version>2.4.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- sitemesh over -->
+
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.22</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- mysql over -->
+
+		<!-- testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>6.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- testng over -->
+
+
+		<!-- easymock -->
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- easymock end -->
+
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<type>jar</type>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- log4j over -->
+
+		<!-- mail -->
+		<dependency>
+			<groupId>mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.0</version>
+			<!--
+				<scope>system</scope> <systemPath>
+				D:\Workspaces\workspace_1\cloudmanagerweb\target\cloudmanagerweb\WEB-INF\lib\mail-1.0.jar
+				</systemPath>
+			-->
+		</dependency>
+		<!-- mail end -->
+
+		<!-- servlet -->
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>servlet</artifactId>
+			<version>4.1.36</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- servlet over -->
+
+		<!-- slf4j -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.5.8</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- slf4j over -->
+
+
+
+		<!-- commons-beantuils -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- commons-beantuils over -->
+
+		<!-- commons-collections  -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.1</version>
+		</dependency>
+		<!-- commons-collections  end -->
+
+
+
+		<!-- bouncycastle -->
+		<dependency>
+			<groupId>bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>136</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- bouncycastle end -->
+
+		<!-- jaxen -->
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.3</version>
+			<type>jar</type>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>xercesImpl</artifactId>
+					<groupId>xerces</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xom</artifactId>
+					<groupId>xom</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>maven-cobertura-plugin</artifactId>
+					<groupId>maven-plugins</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>maven-findbugs-plugin</artifactId>
+					<groupId>maven-plugins</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- jaxen end -->
+
+		<!-- commons-fileupload-->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<!-- commons-fileupload end -->
+
+		<!-- commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<!-- commons-io end -->
+
+		<!-- pager taglib -->
+		<dependency>
+			<groupId>jsptags</groupId>
+			<artifactId>pager-taglib</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<!-- pager taglib end -->
+
+		<!-- velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+		<!-- velocity end -->
+
+		<!-- JNA -->
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>3.0.9</version>
+		</dependency>
+		<!-- JNA -->
+
+
+		<!-- cloudmanager-core -->
+
+		<dependency>
+			<groupId>cloudmanagercore</groupId>
+			<artifactId>cloudmanagercore</artifactId>
+			<version>2.1.3-SNAPSHOT</version>
+			<scope>system</scope>
+			<systemPath>
+			D:\Workspaces\cloudmanagercore-2.1.3-SNAPSHOT.jar
+			</systemPath>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.jna</groupId>
+					<artifactId>jna</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--
+			<dependency> <groupId>org.apache</groupId>
+			<artifactId>test</artifactId> <version>1.0</version>
+			<scope>system</scope> <systemPath>
+			D:\Workspaces\workspace_1\cloudmanagerweb\target\cloudmanagerweb\WEB-INF\lib\cloudmanagercore-2.1.3-SNAPSHOT.jar
+			</systemPath> </dependency>
+		-->
+		<!-- cloudmanager-core end -->
+
+
+		<!-- ck-guacamole -->
+		<dependency>
+			<groupId>CloudKing</groupId>
+			<artifactId>ck_guacamole</artifactId>
+			<version>0.6.2-1</version>
+			<!--
+				<scope>system</scope> <systemPath>
+				D:\Workspaces\workspace_1\cloudmanagerweb\target\cloudmanagerweb\WEB-INF\lib\ck_guacamole-0.6.2-1.jar
+				</systemPath>
+			-->
+		</dependency>
+		<!-- ck-guacamole end -->
+
+
+		<!-- webservice -->
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-adb</artifactId>
+			<version>1.6.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ws.commons.axiom</groupId>
+			<artifactId>axiom-api</artifactId>
+			<version>1.2.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.ws.commons.schema</groupId>
+			<artifactId>XmlSchema</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ws.commons.axiom</groupId>
+			<artifactId>axiom-impl</artifactId>
+			<version>1.2.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.neethi</groupId>
+			<artifactId>neethi</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-transport-local</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-transport-http</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.axis2</groupId>
+			<artifactId>axis2-spring</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<!-- webservice end-->
+
+		<!-- rrd4j start -->
+		<dependency>
+			<groupId>CloudKing</groupId>
+			<artifactId>rrd4j</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- rrd4j end -->
+
+		<!-- jetty -->
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlet</artifactId>
+			<version>7.0.2.v20100331</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>7.0.2.v20100331</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>7.0.2.v20100331</version>
+		</dependency>
+		<!-- jetty end  -->
+
+	</dependencies>
+
+
+	<build>
+		<finalName>cloudmanagerweb</finalName>
+		<outputDirectory>
+			src/main/webapp/WEB-INF/classes
+		</outputDirectory>
+		<plugins>
+			<!--  cargo start -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<!-- Container configuration -->
+					<container>
+						<containerId>tomcat6x</containerId>
+						<type>remote</type>
+					</container>
+
+					<!-- Configuration to use with the container -->
+					<configuration>
+						<type>runtime</type>
+						<properties>
+							<cargo.hostname>
+								192.168.0.62
+								<!-- 默认localhost -->
+							</cargo.hostname>
+							<cargo.servlet.port>
+								8080
+								<!-- 默认8080 -->
+							</cargo.servlet.port>
+							<cargo.remote.username>
+								admin
+							</cargo.remote.username>
+							<cargo.remote.password>
+								123456
+							</cargo.remote.password>
+							<cargo.tomcat.manager.url>
+								http://192.168.0.62:8080/manager
+							</cargo.tomcat.manager.url>
+						</properties>
+					</configuration>
+
+				</configuration>
+			</plugin>
+			<!--  cargo end   -->
+
+
+			<!-- 源代码拷贝的时候编码 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!-- 源代码编译的时候编码 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+
+			<!-- eclipse插件生成Myeclipse -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<jeeversion>5.0</jeeversion>
+					<projectnatures>
+						<java.lang.String>
+							com.genuitec.eclipse.j2eedt.core.webnature
+						</java.lang.String>
+						<java.lang.String>
+							org.eclipse.jdt.core.javanature
+						</java.lang.String>
+					</projectnatures>
+					<buildOutputDirectory>
+						src/main/webapp/WEB-INF/classes
+					</buildOutputDirectory>
+				</configuration>
+			</plugin>
+			<!-- 配置文件打包修改 -->
+			<plugin>
+				<groupId>
+					com.google.code.maven-config-processor-plugin
+				</groupId>
+				<artifactId>maven-config-processor-plugin</artifactId>
+				<version>2.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>xerces</groupId>
+						<artifactId>xercesImpl</artifactId>
+						<version>2.6.2</version>
+						<scope>compile</scope>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<namespaceContexts>
+						<s>http://java.sun.com/xml/ns/persistence</s>
+					</namespaceContexts>
+					<transformations>
+						<transformation>
+							<input>
+								src/main/resources/META-INF/persistence.xml
+							</input>
+							<output>
+								${config-processor-dir}/WEB-INF/classes/META-INF/persistence.xml
+							</output>
+							<config>processing.xml</config>
+						</transformation>
+						<transformation>
+							<input>
+								src/main/resources/project-config.xml
+							</input>
+							<output>
+								${config-processor-dir}/WEB-INF/classes/project-config.xml
+							</output>
+							<config>processing.xml</config>
+						</transformation>
+						<transformation>
+							<input>src/main/resources/struts.xml</input>
+							<output>
+								${config-processor-dir}/WEB-INF/classes/struts.xml
+							</output>
+							<config>processing.xml</config>
+						</transformation>
+						<transformation>
+							<input>
+								src/main/resources/log4j.properties
+							</input>
+							<output>
+								${config-processor-dir}/WEB-INF/classes/log4j.properties
+							</output>
+							<config>processing.xml</config>
+						</transformation>
+					</transformations>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<phase>prepare-package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- end  -->
+			<!-- 把war打包 -->
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>
+								target/${config-processor-dir}
+							</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+			<!-- end war -->
+		</plugins>
+
+	</build>
+
+
+	<!--解决Missing artifact com.sun:tools:jar:1.5.0:system 问题 必须配置环境变量-->
+	<profiles>
+		<profile>
+			<id>default-tools.jar</id>
+			<activation>
+				<property>
+					<name>java.vendor</name>
+					<value>Sun Microsystems Inc.</value>
+				</property>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.sun</groupId>
+					<artifactId>tools</artifactId>
+					<version>1.6.0</version>
+					<scope>system</scope>
+					<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+</project>

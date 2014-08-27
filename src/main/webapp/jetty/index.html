@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>安装向导</title>
+		<link rel="shortcut icon" href="images/favicon.ico"
+			type="image/x-icon" />
+		<link rel="stylesheet" type="text/css" href="style/style.css"
+			media="screen" />
+	</head>
+	<body>
+		<div id="header">
+			<div id="logo">
+				<h1>
+					<a href="#">云景云管理平台安装向导</a>
+				</h1>
+				<p></p>
+			</div>
+		</div>
+		<!-- end #header -->
+		<div id="page">
+			<div id="content">
+				<div class="post">
+					<h1 class="title">
+						数据库配置
+					</h1>
+					<div class="gauid_wrapper">
+						<form action="/dbSet.do" method="post">
+							<ul>
+								<li>
+									<span class="gauid_lable">数据库驱动：</span>
+									<input type="text" id="driver" value="com.mysql.jdbc.Driver"
+										name="driver" disabled="disabled" />
+								</li>
+								<li>
+									<span class="gauid_lable">数据库用户名：</span>
+									<input type="text" id="username" value="root" name="username" />
+								</li>
+								<li>
+									<span class="gauid_lable">数据库密码：</span>
+									<input type="text" id="password" value="123456" name="password" />
+								</li>
+								<li>
+									<span class="gauid_lable">数据库URL：</span>
+									<input type="text" id="url"
+										value="jdbc:mysql://localhost:3306/cloudmanagerweb"
+										name="dbURL" dis />
+								</li>
+								<li>
+									<span class="gauid_lable">数据库方言：</span>
+									<input type="text" id="dialect"
+										value="org.hibernate.dialect.MySQLDialect" name="dialect"
+										disabled="disabled" />
+								</li>
+								<li>
+									<input type="submit" value="下一步" class="db_submit" />
+								</li>
+							</ul>
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- end #content -->
+		</div>
+	</body>
+</html>

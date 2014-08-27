@@ -1,0 +1,46 @@
+﻿.ck_resource_wrapper,.ck_apply_list_wrapper{
+	width:100%;
+	padding-left:10px;
+	padding-top:10px;
+}
+
+.ck_resource_wrapper .ck_table_body_wrapper{
+	padding-left: 3px;
+}
+
+.ck_talbe_title{
+	padding-top: 10px;
+	padding-left: 20px;
+	font-weight: bold;	
+	float:left;
+}
+
+.ck_res_item_wrapper{
+	width: 33%;
+	padding-top:5px;
+	padding-bottom:5px;	
+	float:left;
+}
+.ck_res_crp_item_wrapper{
+	width: 49%;
+	padding-top:5px;
+	padding-bottom:5px;	
+	float:left;
+}
+.ck_res_storage_item_wrapper{
+	width: 98%;
+	padding-top:5px;
+	padding-bottom:5px;	
+}
+.ck_res_item_wrapper fieldset{
+	height:140px;	
+}
+.ck_res_icon_wrapper,.ck_res_text_wrapper{
+	float:left;	
+}
+.ck_res_inner_wrapper{
+	padding-top:30px;
+}
+.ck_table_header_wrapper, .ck_table_footer_wrapper{
+	height:33px;	
+}

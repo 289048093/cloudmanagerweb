@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<service name="template"
+		targetNamespace="http://ws.apache.org/axis2/template">
+		<description>模板WebService服务</description>
+		<schema
+			schemaNamespace="http://ws.apache.org/axis2/template/xsd/" />
+		<parameter name="ServiceClass" locked="false">
+			com.cloudking.cloudmanagerweb.webservice.TemplateService
+		</parameter>
+		<parameter name="ServiceObjectSupplier">
+			org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<parameter name="SpringBeanName">templateWebservice</parameter>
+		<operation name="queryAllTemplate">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+	</service>
+</serviceGroup>

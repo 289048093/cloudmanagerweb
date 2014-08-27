@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 要调用的工作类 -->
+	<bean id="taskQuartzExcutor"
+		class="com.cloudking.cloudmanagerweb.service.quartz.CloudKingScheduler">
+	</bean>
+	<!-- 定义调用对象和调用对象的方法 数据库备份-->
+	<bean id="quartzCkDatabaseBackUpTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="taskQuartzExcutor" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>quartzCkDatabaseBackUpTask</value>
+		</property>
+	</bean>
+
+
+	<!-- 定义调用对象和调用对象的方法 rrd -->
+	<bean id="everyMinuteTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="taskQuartzExcutor" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>quartzEveryMinuteTask</value>
+		</property>
+	</bean> 
+
+	<!-- 定义调用对象和调用对象的方法  每天 -->
+	<bean id="everyDayTask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 调用的类 -->
+		<property name="targetObject">
+			<ref bean="taskQuartzExcutor" />
+		</property>
+		<!-- 调用类中的方法 -->
+		<property name="targetMethod">
+			<value>quartzEveryDayTask</value>
+		</property>
+	</bean>
+
+	<!-- 定义触发任务 数据库的-->
+	<bean id="databaseBackUpTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail">
+			<ref bean="quartzCkDatabaseBackUpTask" />
+		</property>
+		<!-- 简单时间，毫秒 -->
+		<property name="repeatInterval">
+			<value>300000</value>
+		</property>
+	</bean>
+
+	<!-- 定义触发任务状态更新，rrd-->
+	<bean id="everyDayTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="everyDayTask" />
+		</property>
+		<!-- 每天执行一下 -->
+		<property name="cronExpression">
+			<value>0 0 0 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 定义触发任务状态更新 rrd每分钟-->
+	<bean id="everyMinuteTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="everyMinuteTask" />
+		</property>
+		<!-- 每一分执行一下 -->
+		<property name="cronExpression">
+			<value>0 * * * * ?</value>
+		</property>
+	</bean> 
+
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+	<bean id="schedulerFactory" lazy-init="true" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="autoStartup" value="false" />
+		<property name="triggers">
+			<list>
+				<ref bean="databaseBackUpTrigger" />
+				<ref bean="everyDayTrigger" />
+				<ref bean="everyMinuteTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

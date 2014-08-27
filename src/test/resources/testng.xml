@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="cloudmanagerweb suite">
+	<test verbose="2" name="dao test">
+		<packages>
+			<!-- 支持正则表达式 -->
+			<package name="com.cloudking.cloudmanagerweb.action.*"></package>
+		</packages>
+	</test>
+</suite>

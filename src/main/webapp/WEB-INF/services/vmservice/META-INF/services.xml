@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<service name="vm"
+		targetNamespace="http://ws.apache.org/axis2/vm">
+		<description>虚拟机webservice</description>
+		<schema schemaNamespace="http://ws.apache.org/axis2/vm/xsd/" />
+		<parameter name="ServiceClass" locked="false">
+			com.cloudking.cloudmanagerweb.webservice.VMService
+		</parameter>
+		<parameter name="ServiceObjectSupplier">
+			org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<parameter name="SpringBeanName">vmWebservice</parameter>
+		<operation name="queryMyVirtualMachine">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="queryVirtualMachineStatusOverAjax">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="vnc">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="start">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="reboot">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="resume">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="suspend">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+		<operation name="shutdown">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation> 
+		<operation name="insertSnapshot">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation> 
+		<operation name="restoreSnapshot">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation> 
+		<operation name="initRestoreSnapshot">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation> 
+		<operation name="deleteSnapshot">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation> 
+	</service>
+</serviceGroup>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	<!-- 配置SessionFactory,由Spring容器来管理Hibernate -->
+	<!-- 非Annotation时,使用org.springframework.orm.hibernate3.LocalSessionFactoryBean, 
+		它注入实体类的方式是setMappingResources(),而Hibernate Annotation所用的映射方式 不是mapping resource,而是mapping 
+		class,这就要用到LocalSessionFactoryBean的子类 AnnotationSessionFactoryBean了.因为AnnotationSessionFactoryBean它支持实体的注入 
+		方式setAnnotatedClasses,即对应Hibernate中的mapping class.参见这两个类的源代码. -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg-test.xml</value>
+		</property>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id="managerAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" rollback-for="java.lang.Exception" />
+			<tx:method name="add*" rollback-for="java.lang.Exception" />
+			<tx:method name="update*" rollback-for="java.lang.Exception" />
+			<tx:method name="delete*" rollback-for="java.lang.Exception" />
+			<tx:method name="insert*" rollback-for="java.lang.Exception" />
+			<tx:method name="input*" rollback-for="java.lang.Exception" />
+			<tx:method name="quartz*" rollback-for="java.lang.Exception" />
+			<tx:method name="merge*" rollback-for="java.lang.Exception" />
+			<!-- 额外的 -->
+			<tx:method name="login" rollback-for="java.lang.Exception" />
+			<tx:method name="*" read-only="true" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+
+
+	<!-- 那些类的哪些方法参与事务 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="allManagerMethod"
+			expression="execution(* com.cloudking.cloudmanagerweb.service..*.*(..))" />
+		<aop:advisor pointcut-ref="allManagerMethod" advice-ref="managerAdvice" />
+	</aop:config>
+
+
+
+	<!-- 使Spring关注Annotation <context:annotation-config/> -->
+	<!-- 让Spring通过自动扫描来查询和管理Bean 有了这一句上面的<context:annotation-config/>可以注释掉 -->
+	<context:component-scan base-package="com.cloudking.cloudmanagerweb" />
+</beans>

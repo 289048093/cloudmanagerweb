@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serviceGroup>
+	<service name="machineType"
+		targetNamespace="http://ws.apache.org/axis2/machineType">
+		<description>机型WebService服务</description>
+		<schema
+			schemaNamespace="http://ws.apache.org/axis2/machineType/xsd/" />
+		<parameter name="ServiceClass" locked="false">
+			com.cloudking.cloudmanagerweb.webservice.MachineTypeService
+		</parameter>
+		<parameter name="ServiceObjectSupplier">
+			org.apache.axis2.extensions.spring.receivers.SpringServletContextObjectSupplier
+		</parameter>
+		<parameter name="SpringBeanName">machineTypeWebservice</parameter>
+		<operation name="queryAllMachineType">
+			<messageReceiver
+				class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+		</operation>
+	</service>
+</serviceGroup>
